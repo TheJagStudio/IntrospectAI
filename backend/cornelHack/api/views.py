@@ -58,7 +58,7 @@ def generate_report(request):
 
         result = generate_ai_response(messages,reportSystem,max_tokens=2048)
         session = Session.objects.get(uuid=sessionId)
-        session.report = result.response
+        session.report = result["response"]
         session.isReported = True
         session.save()
         return JsonResponse(result)

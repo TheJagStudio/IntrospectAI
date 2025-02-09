@@ -16,7 +16,7 @@ class AIModule(models.Model):
     profileImg = models.URLField(default="")
     
     def __str__(self):
-        return self.name
+        return self.name + " - " + self.role
 
 
 class User(models.Model):
