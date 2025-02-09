@@ -9,6 +9,7 @@ class AIModule(models.Model):
     name = models.CharField(max_length=255)
     role = models.CharField(max_length=255)
     system = models.TextField()
+    reportSystem = models.TextField(default="")
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -38,10 +39,11 @@ class Session(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     recordings = models.FileField(upload_to='recordings/', null=True, blank=True)
-    report = models.JSONField(null=True, blank=True)
+    report = models.TextField(default="")
+    isReported = models.BooleanField(default=False)
     module = models.ForeignKey(AIModule, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
-        return str(self.id)
+        return str(self.uuid + " - " + self.user.name + " - " + self.module.name) 
 

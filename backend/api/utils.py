@@ -2,7 +2,7 @@ import boto3
 import json
 from botocore.exceptions import ClientError
 
-def generate_ai_response(messages,system):
+def generate_ai_response(messages,system,max_tokens=512):
     # AWS credentials
     aws_access_key = "AKIAUTJ7AYWXNHD2644N"
     aws_secret_key = "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"
@@ -19,7 +19,7 @@ def generate_ai_response(messages,system):
     native_request = {
         "anthropic_version": "bedrock-2023-05-31",
         "temperature": 0.5,
-        "max_tokens": 512,
+        "max_tokens": max_tokens,
         "messages": messages,
         "system": [
             {
