@@ -150,7 +150,6 @@ const ChatInput = () => {
 			</div>
 			<div className="mt-4 px-4">
 				<div className="text-sm text-gray-700">
-					<p className="mb-2">Conversation:</p>
 					<div className="max-h-[300px] overflow-y-auto space-y-4 noScrollBars chatScroller">
 						{conversation.map((message, index) => (
 							<div key={index} className="bg-gray-100 p-3 rounded-lg">

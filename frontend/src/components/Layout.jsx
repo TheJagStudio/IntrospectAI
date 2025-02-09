@@ -3,23 +3,35 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 const Layout = ({ children }) => {
+  const getLocalUser = localStorage.getItem("user_introspect");
+  console.log(getLocalUser);
+  
   return (
     <div className="min-h-screen">
       {/* Navigation */}
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <Link to="/" className="text-2xl font-bold">Abridge</Link>
+        <Link to="/" className="text-2xl font-bold">Introspect AI</Link>
         <div className="space-x-8">
           <button className="hover:text-red-200 transition">Solutions</button>
           <button className="hover:text-red-200 transition">About</button>
+
+          { getLocalUser ? (<>
           <Link 
-            to="/profile" 
-            className="hover:text-red-200 transition"
-          >
-            Profile
-          </Link>
+          to="/profile" 
+          className="hover:text-red-200 transition"
+        >
+          Profile
+        </Link>
           <button className="bg-white text-red-600 px-6 py-2 rounded-full hover:bg-red-50 transition">
-            Get Started
-          </button>
+            {getLocalUser['displayName']}
+          </button> 
+          </>
+          ):
+          (
+            <button className="bg-white text-red-600 px-6 py-2 rounded-full hover:bg-red-50 transition">
+            Sign Up
+          </button> 
+          ) }
         </div>
       </nav>
 

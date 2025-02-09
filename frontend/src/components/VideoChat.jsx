@@ -5,7 +5,7 @@ import { FaCirclePlay } from "react-icons/fa6";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import StreamingAvatar, { AvatarQuality, StreamingEvents, TaskType, TaskMode, VoiceEmotion } from "@heygen/streaming-avatar";
 
-const VideoChat = () => {
+const VideoChat = ({session}) => {
 	// Existing recording state
 	const [isRecording, setIsRecording] = useAtom(isRecordingAtom);
 	const [conversation,setConversation] = useAtom(conversationAtom);
@@ -14,8 +14,8 @@ const VideoChat = () => {
 	const [streamingAvatar, setStreamingAvatar] = useState(null);
 	const [stream, setStream] = useState(null);
 	const videoRef = useRef(null);
-	const avatarId = "Shawn_Therapist_public";
-	const knowledgeId = "4f40877e1ed34c768b9fcaa305be68df";
+	const avatarId = session?.module?.avatarId;
+	const knowledgeId = session?.module?.knowledgeId;
 	const language = "en";
 	const [speakFunction, setSpeakFunction] = useAtom(speakFunctionAtom);
 
@@ -54,7 +54,7 @@ const VideoChat = () => {
 			});
 			let token = await response.text();
 			token = JSON.parse(token).data.token;
-			console.log("Access Token:", token);
+			// console.log("Access Token:", token);
 			return token;
 		} catch (error) {
 			console.error("Error fetching access token:", error);
@@ -79,7 +79,7 @@ const VideoChat = () => {
 			cleanup();
 		});
 		avatar.on(StreamingEvents.STREAM_READY, (event) => {
-			console.log("Stream ready", event.detail);
+			// console.log("Stream ready", event.detail);
 			setStream(event.detail);
 			setIsLoading(false);
 		});
@@ -154,6 +154,7 @@ const VideoChat = () => {
 				},
 				body: JSON.stringify({
 					messages: tempMessages,
+					system: session?.module?.system,
 				}),
 			})
 				.then((response) => response.json())

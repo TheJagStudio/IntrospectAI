@@ -1,43 +1,38 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
+import Sidebar from "../components/Sidebar";
 import TranslateSection from "../components/TranslateSection";
 import LiveChatSection from "../components/LiveChatSection";
 import ChatInput from "../components/ChatInput";
 import { CgMenuGridO } from "react-icons/cg";
 import { IoVideocam } from "react-icons/io5";
 import { FaBookmark, FaCalendarDays } from "react-icons/fa6";
+import { useParams } from "react-router-dom";
 import { IoMdSettings } from "react-icons/io";
 import { FiRefreshCcw } from "react-icons/fi";
 import VideoChat from "../components/VideoChat";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+	const { sessionId } = useParams();
+	const [session, setSession] = useState(null);
+	useEffect(() => {
+		fetch(`${import.meta.env.VITE_SERVER_URL}/api/session/${sessionId}`)
+			.then((response) => response.json())
+			.then((response) => {
+				setSession(response);
+			})
+			.catch((error) => {});
+	}, []);
 	return (
 		<div className="flex min-h-screen bg-slate-50 noScrollBars overflow-hidden">
-			{/* Left Sidebar */}
-			<div className="w-20 bg-white border-r border-slate-300 fixed top-0 left-0 h-full z-10">
-				<div className="flex flex-col items-center">
-					<div className="border-b border-slate-300 w-full flex items-center justify-center h-20">
-						<div className="w-full h-full transition-transform cursor-pointer">
-							<img src="https://img.freepik.com/premium-vector/round-circle-logo-icon-sign-symbol-red-design-vector-illustration_685751-586.jpg" alt="Logo" className="w-full h-full object-contain p-5 hue-180" />
-						</div>
-					</div>
-					<div className="flex flex-col items-center space-y-6 py-5">
-						{/* Replace all icons with placeholders - you should import proper icons */}
-						{[<CgMenuGridO />, <IoVideocam />, <FaBookmark />, <FaCalendarDays />, <IoMdSettings />].map((icon, index) => (
-							<div key={index} className="w-14 h-14 bg-slate-100 border border-slate-300 rounded-xl flex items-center justify-center transition-all hover:bg-emerald-100 hover:border-emerald-300 hover:text-emerald-600 cursor-pointer">
-								{icon}
-							</div>
-						))}
-					</div>
-				</div>
-			</div>
+			<Sidebar activeTab={1} />
 			<div className="w-full ml-20">
 				{/* Top Bar */}
 				<div className="flex items-center justify-between mb-2 bg-white p-4 border-b border-slate-300 fixed top-0 left-20 w-[calc(100vw-5rem)] h-20 z-10">
 					<div className="flex items-center space-x-3">
-						<div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+						<div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></div>
 						<div className="text-lg font-medium">Room Meeting</div>
-						<div className="px-3 py-1 text-sm bg-red-50 text-red-500 rounded-full">Live Record</div>
+						<div className="px-3 py-1 text-sm bg-purple-50 text-purple-500 rounded-full">Live Record</div>
 					</div>
 					<div className="flex items-center space-x-6">
 						{/* Control buttons */}
@@ -82,15 +77,15 @@ const Home = () => {
 								</div>
 							</div>
 
-							<VideoChat />
+							<VideoChat session={session}/>
 						</div>
 					</div>
 
 					{/* Right Sidebar */}
 					<div className="w-96   p-6 pl-0 space-y-4 h-[calc(100vh-5rem)] ">
-						<TranslateSection />
+						{/* <TranslateSection /> */}
 						{/* <LiveChatSection /> */}
-						<ChatInput />
+						<ChatInput session={session}/>
 					</div>
 				</div>
 			</div>
