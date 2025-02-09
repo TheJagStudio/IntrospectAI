@@ -17,16 +17,7 @@ const Layout = ({ children }) => {
 					<button className="hover:text-red-200 transition">Solutions</button>
 					<button className="hover:text-red-200 transition">About</button>
 
-					{getLocalUser ? (
-						<>
-							<Link to="/profile" className="hover:text-red-200 transition">
-								Profile
-							</Link>
-							<button className="bg-white text-red-600 px-6 py-2 rounded-full hover:bg-red-50 transition">{getLocalUser["displayName"]}</button>
-						</>
-					) : (
-						<button className="bg-white text-red-600 px-6 py-2 rounded-full hover:bg-red-50 transition">Sign Up</button>
-					)}
+					{getLocalUser ? <button className="bg-white text-red-600 px-6 py-2 rounded-full hover:bg-red-50 transition">{getLocalUser["displayName"]}</button> : <button className="bg-white text-red-600 px-6 py-2 rounded-full hover:bg-red-50 transition">Sign Up</button>}
 				</div>
 			</nav>
 

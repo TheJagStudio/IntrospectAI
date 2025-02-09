@@ -72,7 +72,7 @@ function App() {
 					{user && (
 						<>
 							{/* <Route path="/dashboard" element={<Home />} /> */}
-							<Route path="/profile" element={<Profile />} />
+							{/* <Route path="/profile" element={<Profile />} /> */}
 							{/* <Route path="/demo" element={<Demo />} /> */}
 							<Route path="/apps" element={<AIModules />} />
 							<Route path="/history" element={<History />} />

@@ -50,9 +50,7 @@ const AIModules = () => {
 							<div className="w-9 h-9 rounded-xl overflow-hidden">
 								<img src={user?.photoURL} alt="User" className="w-full h-full object-cover" />
 							</div>
-							<Link to="/profile" className="hover:text-purple-700 transition">
-								<span className="font-medium">{user?.displayName}</span>
-							</Link>
+							<span className="font-medium">{user?.displayName}</span>
 						</div>
 					</div>
 				</div>
