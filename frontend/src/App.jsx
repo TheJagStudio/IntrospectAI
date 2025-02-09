@@ -6,6 +6,9 @@ import Profile from "./pages/Profile";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import AIModules from "./pages/AIModules";
+import Solutions from "./pages/Solutions";
+import About from "./pages/About";
+import History from "./pages/History";
 import { useAtom } from "jotai";
 import { userAtom } from "./Variables";
 
@@ -23,8 +26,8 @@ const firebaseConfig = {
 	measurementId: "G-YKDVF0W553",
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 
 function App() {
 	const [user, setUser] = useAtom(userAtom);
@@ -46,6 +49,7 @@ function App() {
 		try {
 			const result = await signInWithPopup(auth, provider);
 			console.log("User signed in:", result.user);
+			window.location.href = "/apps";
 		} catch (error) {
 			console.error("Error signing in:", error.code, error.message);
 		}
@@ -71,11 +75,14 @@ function App() {
 							<Route path="/profile" element={<Profile />} />
 							{/* <Route path="/demo" element={<Demo />} /> */}
 							<Route path="/apps" element={<AIModules />} />
+							<Route path="/history" element={<History />} />
 							<Route path="/session/:sessionId" element={<Home />} />
 						</>
 					)}
 					<Route path="/" element={<Landing />} />
 					<Route path="/login" element={<Login signInWithGoogle={signInWithGoogle} />} />
+					<Route path="/solutions" element={<Solutions />} />
+					<Route path="/about" element={<About />} />
 				</Routes>
 			</Router>
 		</div>

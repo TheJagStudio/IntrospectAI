@@ -8,7 +8,7 @@ const TranslateSection = () => {
 			<div className="flex items-center justify-between mb-4 pt-4 px-6 gap-3">
 				<div className="flex items-center w-full border border-slate-300 p-2 rounded-lg">
 					<div className="w-6 h-6 rounded-full bg-red-200 mr-2"></div>
-					<div>Hindi</div>
+					<div>English</div>
 				</div>
 				<button className="w-8 h-8 aspect-square bg-purple-100 rounded-full flex items-center justify-center hover:bg-purple-200 transition-colors">
 					<CgArrowsExchange />
