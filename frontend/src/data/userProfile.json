@@ -1,0 +1,41 @@
+{
+    "user": {
+      "id": "u123",
+      "name": "Pelon Mah",
+      "email": "sarah.wilson@example.com",
+      "status": "Professional",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=jacob",
+      "score": 86,
+      "specialty": "Internal Medicine",
+      "joinedDate": "2023-09-15",
+      "completedSessions": 24,
+      "practiceHistory": {
+        "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+        "sessions": [12, 15, 8, 20, 16, 24],
+        "scores": [75, 78, 82, 80, 85, 86]
+      },
+      "recentActivities": [
+        {
+          "id": 1,
+          "type": "Practice Session",
+          "description": "Completed Clinical Documentation Module",
+          "score": 88,
+          "date": "2024-03-15"
+        },
+        {
+          "id": 2,
+          "type": "Assessment",
+          "description": "Passed HIPAA Compliance Test",
+          "score": 92,
+          "date": "2024-03-10"
+        },
+        {
+          "id": 3,
+          "type": "Practice Session",
+          "description": "Completed Patient Interview Module",
+          "score": 85,
+          "date": "2024-03-05"
+        }
+      ]
+    }
+  } 
